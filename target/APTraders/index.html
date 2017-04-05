@@ -90,24 +90,27 @@
 
 				<!-- Contact -->
 					<section id="contact">
-						<div class="inner">
+                                            <div class="inner" id="asa">
 							<section>
 								<form method="post" action="SendMail">
 									<div class="field half first">
-										<label for="name">Name</label>
+                                                                            <label for="name" id="n">Name</label>
 										<input type="text" name="name" id="name" />
 									</div>
-									<div class="field half">
-										<label for="email">Email</label>
+                                                                    <div class="field half" >
+										<label for="email" id="e">Email</label>
 										<input type="text" name="email" id="email" />
 									</div>
 									<div class="field">
-										<label for="message">Message</label>
+                                                                            <label for="message" id="m">Message</label>
 										<textarea name="message" id="message" rows="6"></textarea>
 									</div>
+                                                                        <div id="divHidden" class="field half" style="display: none;padding-left:100px;padding-top:150PX">
+                                                                            <p>THANKS FOR CONTACTING US.</p>
+                                                                         </div>
 									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="special" /></li>
-										<li><input type="reset" value="Clear" /></li>
+										<li><input type="submit" value="Send Message" class="special" id="butt" onclick="contactformsub();"/></li>
+                                                                                <li><input type="reset" value="Clear" id="reset" /></li>
 									</ul>
 								</form>
 							</section>
@@ -161,6 +164,49 @@
 			<script src="js/skel.min.js"></script>
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+                        <script type="text/javascript">
+			function contactformsub() {
+                            var name = document.getElementById('name').value;
+                            var email = document.getElementById('email').value;
+                            var message = document.getElementById('message').value;
+                            $.ajax({
+                            url: 'SendMail',
+                            data: {name: name,email:email,message:message},
+                            type: 'GET',
+                            crossDomain: true, // enable this
+                            // dataType: 'jsonp',
+                            success: function() { },
+                            error: function() { alert("failed");},
+                            // beforeSend: setHeader
+                            });
+                            var name = document.getElementById('name');
+                            var email = document.getElementById('email');
+                            var message = document.getElementById('message');
+                            var bttn = document.getElementById('butt');
+                            var n = document.getElementById('n');
+                            var e = document.getElementById('e');
+                            var m = document.getElementById('m');
+                            var reset = document.getElementById('reset');
+                            //var divid = document.getElementById('aa');
+                            //var divid1 = document.getElementById('a2');
+                            name.parentNode.removeChild(name);
+                            email.parentNode.removeChild(email);
+                            message.parentNode.removeChild(message);
+                            bttn.parentNode.removeChild(bttn);
+                            n.parentNode.removeChild(n);
+                            e.parentNode.removeChild(e);
+                            m.parentNode.removeChild(m);
+                            reset.parentNode.removeChild(reset);
+                            $('#divHidden').show();
+                            //divid.parentNode.removeChild(divid);
+                            //divid1.parentNode.removeChild(divid1);
+                            //var x = document.createElement("P");
+                            //var t = document.createTextNode("THANKS FOR CONTACTING US");
+                            //x.appendChild(t);
+                            //document.getElementById('contact').appendChild(x);
+                            }
+                        </script>
 
 	</body>
 </html>
