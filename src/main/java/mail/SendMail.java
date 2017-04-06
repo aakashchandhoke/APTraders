@@ -5,6 +5,7 @@
  */
 package mail;
 
+import dataHandling.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class SendMail extends HttpServlet {
         String msg=request.getParameter("message");  
           
         Mailer.send(email, name, msg);  
+        Data.addData(name,email,msg);
         out.print("message has been sent successfully");  
         out.close();  
     }
