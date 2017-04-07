@@ -37,8 +37,8 @@ public class Data
              //                                               "user=root&password=aakash");
             Class.forName("org.postgresql.Driver");//for postGressql
             //Connection cn=getConnection();
-            //Connection cn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","aakash");//for ocalhost postgressql
-            Connection cn=DriverManager.getConnection("jdbc:postgres://aswtejchfstwpp:da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc@ec2-54-83-26-65.compute-1.amazonaws.com:5432/d35pb2loekai10","aswtejchfstwpp","da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc");
+            Connection cn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","aakash");//for localhost postgressql
+            //Connection cn=DriverManager.getConnection("jdbc:postgres://aswtejchfstwpp:da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc@ec2-54-83-26-65.compute-1.amazonaws.com:5432/d35pb2loekai10","aswtejchfstwpp","da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc");
             PreparedStatement pst;
             pst=cn.prepareStatement("insert into val values(?,?,?)");
             pst.setString(1, name);
