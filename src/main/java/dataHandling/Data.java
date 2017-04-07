@@ -19,7 +19,7 @@ public class Data
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost()+ ':' + dbUri.getPort() + dbUri.getPath();
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost()+ ':' + dbUri.getPort() + dbUri.getPath()+"?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
         return DriverManager.getConnection(dbUrl, username, password);
     }
     public static int addData(String name,String mail,String message)
@@ -36,9 +36,10 @@ public class Data
             //Connection cn =DriverManager.getConnection("jdbc:mysql://localhost/aakash?" +
              //                                               "user=root&password=aakash");
             Class.forName("org.postgresql.Driver");//for postGressql
-            //Connection cn=getConnection();
-            Connection cn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","aakash");//for localhost postgressql
-            //Connection cn=DriverManager.getConnection("jdbc:postgres://aswtejchfstwpp:da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc@ec2-54-83-26-65.compute-1.amazonaws.com:5432/d35pb2loekai10","aswtejchfstwpp","da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc");
+            Connection cn=getConnection();
+            //Connection cn=DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","aakash");//for localhost postgressql
+            //Connection cn=DriverManager.getConnection("jdbc:postgres://aswtejchfstwpp:da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc@ec2-54-83-26-65.compute-1.amazonaws.com:5432/d35pb2loekai10?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory","aswtejchfstwpp","da722d81af8b41633209dc61691f1976377dd15d1b803ca5c9dc1750fc66b3bc");
+            
             PreparedStatement pst;
             pst=cn.prepareStatement("insert into val values(?,?,?)");
             pst.setString(1, name);
